@@ -13,7 +13,13 @@ pico_sdk_init()
 
 add_executable(motor-sequencer-fw
     src/main.c
+    src/interrupts.c
+    src/io.c
+    include/interrupts.h
+    include/io.h
 )
+
+target_include_directories(motor-sequencer-fw PRIVATE include)
 
 target_link_libraries(motor-sequencer-fw pico_stdlib)
 
