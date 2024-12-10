@@ -1,5 +1,19 @@
 #include "interrupts.h"
 
+#include "io.h"
+
+#include "hardware/irq.h"
+#include "hardware/timer.h"
+
+#define DYN_ALARM_NUM 0
+#define STEP_DOWN_ALARM_NUM 1
+
+#define TIMER timer_hw
+
+#define DYN_ALARM_IRQ_NUM timer_hardware_alarm_get_irq_num(TIMER, DYN_ALARM_NUM)
+#define STEP_DOWN_ALARM_IRQ_NUM                                                \
+  timer_hardware_alarm_get_irq_num(TIMER, STEP_DOWN_ALARM_NUM)
+
 volatile bool latchedMagnitudeIsFull = true;
 volatile bool latchedDirIsPositive = true;
 volatile uint8_t latchedMotorSelect = 0b00;
